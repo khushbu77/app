@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultActivity">
+    tools:context=".ResultActivity"
+    android:weightSum="100"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/imageViewCandidate"
+        android:scaleType="centerCrop"/>
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="336dp" />
-</android.support.constraint.ConstraintLayout>
+        android:id="@+id/textViewName"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:text="Narendra Modi"
+        android:textSize="20sp"
+        android:textColor="#000"/>
+
+</LinearLayout>

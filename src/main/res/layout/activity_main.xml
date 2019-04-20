@@ -15,19 +15,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--<Button-->
-        <!--android:id="@+id/btnResult"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/recylcerView"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:layout_marginEnd="142dp"-->
-        <!--android:layout_marginRight="142dp"-->
-        <!--android:gravity="center_horizontal"-->
-        <!--android:text="Show Results"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/recylcerView" />-->
-
 </LinearLayout>

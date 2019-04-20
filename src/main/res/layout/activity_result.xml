@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ResultActivity"
     android:weightSum="100"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#D5DBDB">
 
     <ImageView
         android:layout_width="match_parent"
@@ -20,9 +21,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/textViewName"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="130dp"
         android:text="Narendra Modi"
         android:textSize="20sp"
-        android:textColor="#000"/>
+        android:textColor="#000" />
+
+    <Button
+        android:id="@+id/btnSubmitVote"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Submit Vote"
+        android:layout_marginTop="30dp"
+        android:background="#85929E"/>
 
 </LinearLayout>

@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,7 +36,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private List<Product> productList;
     public Button btnVote;
 
-    private AdapterView.OnItemClickListener mlistener;
+//    private AdapterView.OnItemClickListener mlistener;
 
     public interface OnItemCLickListener {
         void onbtnClick(int position);
@@ -48,7 +47,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         this.productList = productList;
     }
 
-    public void setOnItemViewClickListener(AdapterView.OnItemClickListener listener) {mlistener = listener;}
+//    public void setOnItemViewClickListener(AdapterView.OnItemClickListener listener) {mlistener = listener;}
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -56,12 +55,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         View view = inflater.inflate(R.layout.product_list, null);
         final ProductViewHolder vHolder = new ProductViewHolder(view);
         Button btnVote = view.findViewById(R.id.VoteButton);
+        Button btnSubmitVote = view.findViewById(R.id.btnSubmitVote);
 
         vHolder.btnVote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String username = SharedPrefManager.getInstance(mCtx).getUsername();
-                        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_VOTE, new Response.Listener<String>() {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_VOTE, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
@@ -79,7 +79,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(mCtx, "You have already voted!", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent (mCtx, ResultActivity.class);
+                        Intent intent = new Intent(mCtx, ResultActivity.class);
                         mCtx.startActivity(intent);
                     }
                 }) {
@@ -92,34 +92,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
                 RequestHandler.getInstance(mCtx).addToRequestQueue(stringRequest);
 
-//                StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_VOTE, new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        try {
-//                            JSONObject jsonObject = new JSONObject(response);
-//
-//                            Toast.makeText(mCtx, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-//                            mCtx.startActivity(new Intent(mCtx, ResultActivity.class));
-//
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(mCtx, "You have already voted!", Toast.LENGTH_LONG).show();
-//                        Intent intent = new Intent (mCtx, ResultActivity.class);
-//                        mCtx.startActivity(intent);
-//                    }
-//                }) {
-//                    protected Map<String, String> getParams() throws AuthFailureError {
-//                        Map<String, String> params = new HashMap<>();
-//                        params.put("username", username);
-//                        return params;
-//                    }
-//                };
 
 
             }
@@ -132,10 +104,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
 
-
     @Override
     public void onBindViewHolder(ProductViewHolder holder, final int position) {
-        Product product = productList.get(position);
+        final Product product = productList.get(position);
 
         //loading the image
         Glide.with(mCtx)
@@ -143,15 +114,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 .into(holder.imageView);
 
         holder.textViewTitle.setText(product.getTitle());
+//        holder.imageView.setText(product.getImage());
         holder.textViewShortDesc.setText(product.getShortdesc());
         holder.btnVote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG,"onClick: clicked on " +productList.get(position));
-                Toast.makeText(mCtx, (CharSequence) productList.get(position), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: clicked on " + productList.get(position));
+                Toast.makeText(mCtx, "You have selected at position "+productList.get(position).getId(), Toast.LENGTH_SHORT).show();
                 Intent myintent = new Intent(mCtx, ResultActivity.class);
                 myintent.putExtra("image_url", productList.get(position).getImage());
-                myintent.putExtra("image_name", productList.get(position).getShortdesc());
+                myintent.putExtra("image_name", productList.get(position).getTitle());
                 mCtx.startActivity(myintent);
 //                Toast.makeText(mCtx,"You have selected at position "+getItemId(position),Toast.LENGTH_SHORT).show();
             }
@@ -175,7 +147,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public int getItemCount() {
-        
+
         return productList.size();
     }
 

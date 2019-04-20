@@ -171,7 +171,6 @@ public class MainActivity extends AppCompatActivity{
             case R.id.menuSettings:
                 Toast.makeText(this, "You clicked settings", Toast.LENGTH_LONG).show();
                 break;
-            case R.id.menuResults:
 
 
         }

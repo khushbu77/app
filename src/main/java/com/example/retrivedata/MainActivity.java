@@ -26,8 +26,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
 
-    private static final String URL_PRODUCTS = "http://192.168.1.17/Api.php";
-    private static final String URL_CHECKVOTE = "http://192.168.1.17/android/v1/checkVote.php";
+    private static final String URL_PRODUCTS = "http://192.168.43.45/Api.php";
+    private static final String URL_CHECKVOTE = "http://192.168.43.45/android/v1/checkVote.php";
 
 
     //a list to store all the products

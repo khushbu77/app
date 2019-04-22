@@ -90,7 +90,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     }
                 };
 
+
+
                 RequestHandler.getInstance(mCtx).addToRequestQueue(stringRequest);
+
+
 
 
 
@@ -114,7 +118,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 .into(holder.imageView);
 
         holder.textViewTitle.setText(product.getTitle());
-//        holder.imageView.setText(product.getImage());
         holder.textViewShortDesc.setText(product.getShortdesc());
         holder.btnVote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,22 +128,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 myintent.putExtra("image_url", productList.get(position).getImage());
                 myintent.putExtra("image_name", productList.get(position).getTitle());
                 mCtx.startActivity(myintent);
-//                Toast.makeText(mCtx,"You have selected at position "+getItemId(position),Toast.LENGTH_SHORT).show();
             }
         });
 
-//        btnVote.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (listener != null){
-//                    int position = getAdapterPosition();
-//                    if (position !=RecyclerView.NO_POSITION){
-//                        listener.onbtnClick(position);
-//                    }
-//                }
-//
-//            }
-//        });
 
     }
 
@@ -155,7 +145,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         TextView textViewTitle, textViewShortDesc ;
         ImageView imageView;
-        Button btnVote;
+        Button btnVote,btnSubmitVote;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -164,6 +154,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             textViewShortDesc = itemView.findViewById(R.id.textViewShortDesc);
             imageView = itemView.findViewById(R.id.imageView);
             btnVote = itemView.findViewById(R.id.VoteButton);
+            btnSubmitVote = itemView.findViewById(R.id.btnSubmitVote);
         }
 
 
